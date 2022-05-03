@@ -1,14 +1,23 @@
-import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import signup from '../../images/login-form/switches_.png'
 import google from '../../images/login-form/google-logo.png'
 import github from '../../images/login-form/github-mark.png'
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../../Hooks/Firebase.init';
 const Register = () => {
     const nameRef = useRef()
     const emailRef = useRef()
     const passwordRef = useRef()
     const addressRef = useRef()
-
+    const navigate = useNavigate()
+    const [check, setCheck] = useState(false)
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
 
 
     const handleRegisterForm = event => {
@@ -17,8 +26,16 @@ const Register = () => {
         const email = event.target.email.value;
         const password = event.target.password.value;
         const address = event.target.address.value;
-
+        createUserWithEmailAndPassword(email, password)
         console.log(name, email, password, address)
+
+    }
+    if (user) {
+        navigate('/login')
+    }
+    let errorText;
+    if (error) {
+        errorText = <p className='text-red-400'>Error: {error.message}</p>
     }
     return (
         <div className=''>
@@ -39,9 +56,14 @@ const Register = () => {
                     <input className='border rounded p-2 mb-2' ref={passwordRef} required type="password" placeholder='Password' name="password" id="" />
                     <label htmlFor="">Address</label>
                     <input className='border rounded p-2 mb-2' ref={addressRef} required type="text" placeholder='Address' name="address" id="" />
-                    <input type="checkbox" name="checkbox" id="" />
-                    <label className='m-2 ' htmlFor="">Accept our privacy policy</label>
-                    <input className='w-100 bg-slate-300 p-2 rounded font-bold' type="submit" value="SignUp" />
+
+
+                    <input onClick={() => setCheck(!check)} type="checkbox" name="checkbox" id="" />
+                    <label className={`${check ? 'text-green-400' : 'text-red-400'} m-2`} htmlFor="">Accept our privacy policy</label>
+
+
+                    <input disabled={!check} className='w-100 bg-slate-400 p-2 rounded font-bold' type="submit" value="SignUp" />
+                    {errorText}
                     <div className='flex justify-center items-center mt-2'>
                         <div className='w-100 h-[1px] m-2 bg-slate-300'></div>
                         <span className='text-white'>Or</span>
