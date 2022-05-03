@@ -1,0 +1,17 @@
+.home-header-section {
+    background: linear-gradient(rgb(72, 0, 72, 0.8), rgb(192, 72, 72, 0.8)), url('../../../images/bg-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 25px;
+    overflow: hidden;
+}
+
+.read-more {
+    background-color: white;
+}
+
+.read-more:hover {
+    background-color: #9333EA;
+    color: white;
+}
