@@ -1,5 +1,6 @@
 import { signOut } from 'firebase/auth';
 import React from 'react';
+import logo from '../../images/site-logo/The-Electronic-Warehouse-Retina-Logo.png'
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
@@ -14,11 +15,11 @@ const Header = () => {
         <div>
             <Navbar className='bg-purple-600 font-semibold' collapseOnSelect expand="lg" variant="dark">
                 <div className='container'>
-                    <Navbar.Brand href="/">Warehouse</Navbar.Brand>
+                    <Navbar.Brand href="/"><img className='w-32' src={logo} alt="" /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="me-auto">
-                            <Nav.Link href="#features">Features</Nav.Link>
+                        <Nav className="me-auto text-center">
+                            <Nav.Link as={Link} to="/inventory">Inventory</Nav.Link>
                             <Nav.Link href="#pricing">Pricing</Nav.Link>
                             <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -28,7 +29,7 @@ const Header = () => {
                                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
-                        <Nav>
+                        <Nav className='text-center'>
                             {
                                 user ?
                                     <Nav.Link onClick={logOut}>Logout</Nav.Link>

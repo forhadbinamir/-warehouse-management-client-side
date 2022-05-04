@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
     return (
         <div className='bg-slate-900 p-5'>
-            <div className='border grid grid-cols-4 gap-4 '>
+            <div className='border grid grid-cols-[1fr_200px_200px_1fr] gap-4 '>
                 <div className="footer-items border grid grid-cols-4"><h1>Electronic warehouse Site</h1>
                     <p>But i must explain to you how all this mistaken idea pleasure and praising pain was born and i will give you.</p>
                 </div>
