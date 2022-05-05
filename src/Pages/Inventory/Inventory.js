@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import InventoryItem from './InventoryItem/InventoryItem';
 
 const Inventory = () => {
@@ -19,6 +20,9 @@ const Inventory = () => {
                         item={item}
                     ></InventoryItem>)
                 }
+            </div>
+            <div className='flex justify-end'>
+                <Link to='/allsupplier' className='flex no-underline bg-purple-600 justify-center border-2 mt-4 text-black hover:bg-white font-bold py-2 px-3 rounded'>See all Suppliers </Link>
             </div>
         </div>
     );
