@@ -14,7 +14,7 @@ const Supplier = (event) => {
         })
             .then(res => res.json())
             .then(result => {
-                console.log('added data', result)
+                console.log('Update data', result)
                 alert('Supplier added successfully')
                 event.target.reset()
             })
