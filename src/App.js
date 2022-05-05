@@ -10,6 +10,9 @@ import RequireAuth from './Hooks/RequireAuth';
 import Inventory from './Pages/Inventory/Inventory';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Supplier from './Pages/AddSupplier/AddSupplier';
+import AllSuppliers from './Pages/AllSuppliers/AllSuppliers';
+import UpdateSupplier from './Pages/AllSuppliers/UpdateSupplier/UpdateSupplier';
 function App() {
 
   return (
@@ -19,9 +22,20 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
+        <Route path='/update/:id' element={<UpdateSupplier></UpdateSupplier>}></Route>
         <Route path='/inventory' element={
           <RequireAuth>
             <Inventory></Inventory>
+          </RequireAuth>}>
+        </Route>
+        <Route path='/allsupplier' element={
+          <RequireAuth>
+            <AllSuppliers></AllSuppliers>
+          </RequireAuth>}>
+        </Route>
+        <Route path='/addsupplier' element={
+          <RequireAuth>
+            <Supplier></Supplier>
           </RequireAuth>}>
         </Route>
         <Route path='/login' element={<Login></Login>}></Route>

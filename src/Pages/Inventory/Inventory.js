@@ -1,11 +1,10 @@
-import { data } from 'autoprefixer';
 import React, { useEffect, useState } from 'react';
 import InventoryItem from './InventoryItem/InventoryItem';
 
 const Inventory = () => {
     const [inventory, setInventory] = useState([])
     useEffect(() => {
-        fetch('data.json')
+        fetch('http://localhost:5000/suppliers')
             .then(res => res.json())
             .then(data => setInventory(data))
     }, [])
@@ -16,7 +15,7 @@ const Inventory = () => {
             <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5'>
                 {
                     inventorySlice.map(item => <InventoryItem
-                        key={item.id}
+                        key={item._id}
                         item={item}
                     ></InventoryItem>)
                 }

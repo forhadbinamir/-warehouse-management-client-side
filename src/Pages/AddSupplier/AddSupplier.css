@@ -1,0 +1,12 @@
+.supplier-form input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.supplier-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}

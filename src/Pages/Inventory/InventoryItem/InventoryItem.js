@@ -1,7 +1,7 @@
 import React from 'react';
 
 const InventoryItem = ({ item }) => {
-    console.log(item)
+    // console.log(item)
     const { name, image, price, supplierName, quantity, description, id } = item
     return (
         <div>
