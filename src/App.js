@@ -13,6 +13,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Supplier from './Pages/AddSupplier/AddSupplier';
 import AllSuppliers from './Pages/AllSuppliers/AllSuppliers';
 import UpdateSupplier from './Pages/AllSuppliers/UpdateSupplier/UpdateSupplier';
+import MySuppliers from './Pages/MySuppliers/MySuppliers';
+import DeliverSup from './Pages/DeliverSup/DeliverSup';
 function App() {
 
   return (
@@ -23,6 +25,7 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
         <Route path='/update/:id' element={<UpdateSupplier></UpdateSupplier>}></Route>
+        <Route path='/deliver/:supplierId' element={<DeliverSup></DeliverSup>}></Route>
         <Route path='/inventory' element={
           <RequireAuth>
             <Inventory></Inventory>
@@ -36,6 +39,11 @@ function App() {
         <Route path='/addsupplier' element={
           <RequireAuth>
             <Supplier></Supplier>
+          </RequireAuth>}>
+        </Route>
+        <Route path='/suppliers' element={
+          <RequireAuth>
+            <MySuppliers></MySuppliers>
           </RequireAuth>}>
         </Route>
         <Route path='/login' element={<Login></Login>}></Route>
