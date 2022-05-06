@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const InventoryItem = ({ item }) => {
-    console.log(item)
+    // console.log(item)
     const navigate = useNavigate()
 
 
