@@ -8,7 +8,7 @@ import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
 import RequireAuth from './Hooks/RequireAuth';
 import Inventory from './Pages/Inventory/Inventory';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Supplier from './Pages/AddSupplier/AddSupplier';
 import AllSuppliers from './Pages/AllSuppliers/AllSuppliers';
@@ -41,7 +41,7 @@ function App() {
             <Supplier></Supplier>
           </RequireAuth>}>
         </Route>
-        <Route path='/suppliers' element={
+        <Route path='/mysuppliers' element={
           <RequireAuth>
             <MySuppliers></MySuppliers>
           </RequireAuth>}>

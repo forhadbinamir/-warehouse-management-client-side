@@ -42,7 +42,6 @@ const AllSuppliers = () => {
                     <th>Id</th>
                     <th>Delete</th>
                     <th>Edit</th>
-                    <th>Deliver</th>
                 </tr>
                 {
                     suppliers.map(supplier => <tr
@@ -56,7 +55,7 @@ const AllSuppliers = () => {
                         <td>{supplier._id}</td>
                         <td className='bg-red-500 text-yellow-100'><button onClick={() => handleDeleteSupplier(supplier._id)} className='font-bold'>Delete</button></td>
                         <Link to={`/update/${supplier._id}`} className='bg-gray-400'><button className='font-bold'>Edit</button></Link>
-                        <td className='bg-green-600 text-yellow-50'><button className='font-bold'>Deliver</button></td>
+
                     </tr>)
                 }
             </table>
