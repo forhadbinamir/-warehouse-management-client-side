@@ -2,10 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const InventoryItem = ({ item }) => {
-    // console.log(item)
     const navigate = useNavigate()
-
-
     const handleDeliverSup = (id) => {
         navigate(`/deliver/${id}`)
     }
@@ -15,7 +12,7 @@ const InventoryItem = ({ item }) => {
             <div className='shadow p-3 rounded h-[550px] relative'>
                 <img className='w-[200px] h-[200px]' src={image} alt="" />
                 <h2>{name}</h2>
-                <h5>Price: <span className='text-yellow-400'>{price}</span> </h5>
+                <h5>Price: <span className='text-yellow-400'>${price}</span> </h5>
                 <h5>Quantity:<span className='text-yellow-400'>{quantity}</span></h5>
                 <p>{description.slice(0, 150)}</p>
                 <h4>Supplier:{supplierName}</h4>

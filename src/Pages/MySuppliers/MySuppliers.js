@@ -40,7 +40,7 @@ const MySuppliers = () => {
         getMySuppliers()
     }, [user])
     return (
-        <div className='container'>
+        <div className='container overflow-x-auto'>
             <h2 className='text-center m-3'>Your Order Suppliers list : {mySuppliers.length}</h2>
             <table className='m-5'>
                 <thead>

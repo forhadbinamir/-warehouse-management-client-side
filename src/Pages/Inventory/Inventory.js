@@ -9,7 +9,7 @@ const Inventory = () => {
             .then(res => res.json())
             .then(data => setInventory(data))
     }, [])
-    const inventorySlice = inventory.slice(0, 10)
+    const inventorySlice = inventory.slice(0, 6)
     return (
         <div className='w-[90%] mx-auto py-10'>
             <h2 className='text-5xl py-3'>Our Suppliers</h2>

@@ -16,53 +16,11 @@ const DeliverSup = () => {
             .then(data => setDeliver(data))
     }, [deliver])
 
-    // const onSubmit = data => {
-    //     
-    //     console.log(stockQuantity)
-    //     const person = {
-    //         // user: user?.displayName,
-    //         // email: user?.email,
-    //         // service: supplierId,
-    //         // supplierName: deliver?.supplierName,
-    //         // address: user?.address,
-    //         // price: deliver?.price,
-    //         quantity: deliver.quantity
-    //     }
-
-    //     const urlLink = `http://localhost:5000/person`
-    //     fetch(urlLink, {
-    //         method: 'POST',
-    //         headers: {
-    //             'content-type': "application/json"
-    //         },
-    //         body: JSON.stringify(person)
-
-    //     })
-    //         .then(res => res.json())
-    //         .then(response => {
-    //             const userId = response.insertedId
-    //             if (userId) {
-    //                 toast('Your deliver is successfully completed')
-    //             }
-    //         })
-    //     // axios.post('http://localhost:5000/person', person)
-    //     //     .then(response => {
-    //     //         console.log(response)
-    //     //     })
-
-    //     //remove supplier 
-
-    //     
-
-    // };
     const handleStockSubmit = event => {
         event.preventDefault()
         const previousQuantity = parseInt(deliver.quantity)
-        console.log(previousQuantity)
         const quantity = parseInt(event.target.quantity.value)
         const updateQuantity = previousQuantity + quantity
-        console.log(quantity)
-
 
         const url = `http://localhost:5000/update/${supplierId}`
         fetch(url, {
@@ -76,7 +34,6 @@ const DeliverSup = () => {
             .then(data => {
                 if (data.deletedCount > 0) {
                     toast('Your quantity supplier is empty')
-
                 }
                 toast(data)
             })
@@ -102,6 +59,34 @@ const DeliverSup = () => {
                 }
                 toast(data)
             })
+
+        const person = {
+            user: user?.displayName,
+            email: user?.email,
+            service: supplierId,
+            supplierName: deliver?.supplierName,
+            address: user?.address,
+            price: deliver?.price,
+            quantity: deliver.quantity
+        }
+
+        const urlLink = `http://localhost:5000/person`
+        fetch(urlLink, {
+            method: 'POST',
+            headers: {
+                'content-type': "application/json"
+            },
+            body: JSON.stringify(person)
+
+        })
+            .then(res => res.json())
+            .then(response => {
+                const userId = response.insertedId
+                if (userId) {
+                    toast('Your deliver is successfully completed')
+                }
+            })
+
     }
     return (
         <div className='p-5' >
@@ -115,7 +100,7 @@ const DeliverSup = () => {
                     <input className='border mb-2 p-2 rounded  w-100 bg-gray-300' type="submit" value='Update Quantity' />
                 </form>
             </div>
-            <table className=''>
+            <table className='overflow-x-auto'>
                 <thead>
                     <tr>
                         <th>image</th>
