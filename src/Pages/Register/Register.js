@@ -90,8 +90,8 @@ const Register = () => {
                         <div className='w-100 h-[1px] m-2 bg-slate-300'></div>
                     </div>
                     <div className='text-center mt-2'>
-                        <button onClick={() => signInWithGoogle()} ><img className='w-8 h-8 mr-2' src={google} alt="Google" /></button>
-                        <button onClick={() => signInWithGithub()}><img className='w-10 h-10' src={github} alt="Github" /></button>
+                        <button className='flex w-5/12 mb-2 justify-center items-center mx-auto bg-white p-2 rounded ' onClick={() => signInWithGoogle()}><img className='w-8 h-8 mr-2' src={google} alt="Google" />Login With Google</button>
+                        <button className='flex w-5/12 mb-2 justify-center items-center mx-auto bg-white p-2 rounded ' onClick={() => signInWithGithub()}><img className='w-8 h-8' src={github} alt="Github" />Login With Github </button>
                     </div>
                     <p className='text-center text-white'>Already have an account <Link to='/login' className='text-yellow-400 font-bold no-underline'>Please Login</Link></p>
                 </form>

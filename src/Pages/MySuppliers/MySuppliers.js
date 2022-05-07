@@ -1,44 +1,68 @@
+import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../Hooks/Firebase.init';
-import axios from 'axios'
 const MySuppliers = () => {
+    const navigate = useNavigate()
     const [user] = useAuthState(auth)
     const [mySuppliers, setMySuppliers] = useState([])
     useEffect(() => {
         const email = user.email
-        const url = `http://localhost:5000/person?email=${email}`
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setMySuppliers(data))
-        // const getMySuppliers = async () => {
-        //     const url = `http://localhost:5000/person?email=${email}`
-        //     const { data } = await axios.get(url)
-        //     setMySuppliers(data)
-        // }
-        // getMySuppliers()
+        // const url = `http://localhost:5000/person?email=${email}`
+        // fetch(url, {
+        //     headers: {
+        //         authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        //     }
+        // })
+        //     .then(res => res.json())
+        //     .then(data => setMySuppliers(data))
+        const getMySuppliers = async () => {
+            const url = `http://localhost:5000/person?email=${email}`
+            try {
+                const { data } = await axios.get(url, {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                    }
+                })
+                setMySuppliers(data)
+            }
+            catch (error) {
+                console.log(error.message)
+                if (error.response.status === 401 || error.response.status === 403) {
+                    signOut(auth)
+                    navigate('/login')
+                }
+            }
+        }
+        getMySuppliers()
     }, [user])
     return (
         <div className='container'>
             <h2 className='text-center m-3'>Your Order Suppliers list : {mySuppliers.length}</h2>
             <table className='m-5'>
-                <tr>
-                    <th>Lenth</th>
-                    <th>Id</th>
-                    <th>Email</th>
-                    <th>Supplier Name</th>
-                    <th>Price</th>
-                </tr>
-                {
-                    mySuppliers.map(supplier => <tr key={supplier._id}>
-                        <td>{mySuppliers.indexOf(supplier) + 1}</td>
-                        <td>{supplier._id}</td>
-                        <td>{supplier.email}</td>
-                        <td>{supplier.supplierName}</td>
-                        <td>{supplier.price}</td>
+                <thead>
+                    <tr>
+                        <th>Lenth</th>
+                        <th>Id</th>
+                        <th>Email</th>
+                        <th>Supplier Name</th>
+                        <th>Price</th>
                     </tr>
-                    )
-                }
+                </thead>
+                <tbody>
+                    {
+                        mySuppliers.map(supplier => <tr key={supplier._id}>
+                            <td>{mySuppliers.indexOf(supplier) + 1}</td>
+                            <td>{supplier._id}</td>
+                            <td>{supplier.email}</td>
+                            <td>{supplier.supplierName}</td>
+                            <td>{supplier.price}</td>
+                        </tr>
+                        )
+                    }
+                </tbody>
             </table>
         </div>
     );
