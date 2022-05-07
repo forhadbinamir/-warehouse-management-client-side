@@ -20,7 +20,7 @@ const InventoryItem = ({ item }) => {
                 <p>{description.slice(0, 150)}</p>
                 <h4>Supplier:{supplierName}</h4>
                 <div className='text-center w-100 absolute bottom-5 '>
-                    <button onClick={() => handleDeliverSup(item._id)} className='bg-yellow-400 mr-6 py-2 px-3 rounded font-bold '>Delivery</button>
+                    <button onClick={() => handleDeliverSup(item._id)} className='bg-yellow-400 mr-6 py-2 px-3 rounded font-bold '>Update</button>
                 </div>
             </div>
         </div>

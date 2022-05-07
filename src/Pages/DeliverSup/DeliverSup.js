@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useForm } from "react-hook-form";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../Hooks/Firebase.init';
 import { toast } from 'react-toastify';
 
 const DeliverSup = () => {
+    const quantityRef = useRef()
     const { supplierId } = useParams()
     const [deliver, setDeliver] = useState({})
     const [user] = useAuthState(auth)
@@ -14,71 +14,126 @@ const DeliverSup = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => setDeliver(data))
-    }, [supplierId])
-    const { register, handleSubmit } = useForm();
-    const onSubmit = data => {
-        const person = {
-            user: user?.displayName,
-            email: user?.email,
-            service: supplierId,
-            supplierName: deliver?.supplierName,
-            address: user?.address,
-            price: deliver?.price
-        }
-        const urlLink = `http://localhost:5000/person`
-        fetch(urlLink, {
-            method: 'POST',
-            headers: {
-                'content-type': "application/json"
-            },
-            body: JSON.stringify(person)
+    }, [deliver])
 
-        })
-            .then(res => res.json())
-            .then(response => {
-                const userId = response.insertedId
-                console.log(userId)
-                if (userId) {
-                    toast('Your deliver is successfully completed')
-                }
-            })
-        // axios.post('http://localhost:5000/person', person)
-        //     .then(response => {
-        //         console.log(response)
-        //     })
-        console.log(data)
+    // const onSubmit = data => {
+    //     
+    //     console.log(stockQuantity)
+    //     const person = {
+    //         // user: user?.displayName,
+    //         // email: user?.email,
+    //         // service: supplierId,
+    //         // supplierName: deliver?.supplierName,
+    //         // address: user?.address,
+    //         // price: deliver?.price,
+    //         quantity: deliver.quantity
+    //     }
 
-        //remove supplier 
+    //     const urlLink = `http://localhost:5000/person`
+    //     fetch(urlLink, {
+    //         method: 'POST',
+    //         headers: {
+    //             'content-type': "application/json"
+    //         },
+    //         body: JSON.stringify(person)
 
-        const url = `http://localhost:5000/suppliers/${supplierId}`
+    //     })
+    //         .then(res => res.json())
+    //         .then(response => {
+    //             const userId = response.insertedId
+    //             if (userId) {
+    //                 toast('Your deliver is successfully completed')
+    //             }
+    //         })
+    //     // axios.post('http://localhost:5000/person', person)
+    //     //     .then(response => {
+    //     //         console.log(response)
+    //     //     })
+
+    //     //remove supplier 
+
+    //     
+
+    // };
+    const handleStockSubmit = event => {
+        event.preventDefault()
+        const previousQuantity = parseInt(deliver.quantity)
+        console.log(previousQuantity)
+        const quantity = parseInt(event.target.quantity.value)
+        const updateQuantity = previousQuantity + quantity
+        console.log(quantity)
+
+
+        const url = `http://localhost:5000/update/${supplierId}`
         fetch(url, {
-            method: 'DELETE',
+            method: 'PUT',
+            headers: {
+                "content-type": 'application/json'
+            },
+            body: JSON.stringify({ quantity: updateQuantity })
         })
             .then(res => res.json())
             .then(data => {
                 if (data.deletedCount > 0) {
-                    toast('Your deliver supplier is empty')
-                    const remaining = deliver.filter(sup => sup._id !== supplierId)
-                    setDeliver(remaining)
+                    toast('Your quantity supplier is empty')
+
                 }
                 toast(data)
             })
+    }
+    const handelDeliver = event => {
+        const previousQuantity = parseInt(deliver.quantity)
+        const updateQuantity = previousQuantity - 1
 
-    };
 
+        const url = `http://localhost:5000/update/${supplierId}`
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                "content-type": 'application/json'
+            },
+            body: JSON.stringify({ quantity: updateQuantity })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    toast('Your quantity supplier is empty')
+
+                }
+                toast(data)
+            })
+    }
     return (
-        <div className='w-50 mx-auto border p-5 m-5 rounded-lg'>
-            <h2> Supplier Name:{deliver.supplierName} </h2>
-            <p> Supplier id:{supplierId} </p>
-            <form onSubmit={handleSubmit(onSubmit)} className=''>
-                <input className='border mb-2 p-2 rounded w-100' value={user?.displayName} placeholder='User Name' {...register("name", { required: true, maxLength: 20 })} /> <br />
-                <input className='border mb-2 p-2 rounded w-100' value={user?.email} placeholder='Email' {...register("email")} readOnly /> <br />
-                <input className='border mb-2 p-2 rounded w-100' value={deliver?.supplierName} placeholder='Supplier Name' {...register("supplierName")} readOnly /> <br />
-                <input className='border mb-2 p-2 rounded w-100' value={user?.address} placeholder='Address' {...register("address")} /> <br />
-                <input className='border mb-2 p-2 rounded w-100' value={deliver?.price} placeholder='Price' type="number" {...register("price")} /> <br />
-                <input className='border mb-2 p-2 rounded w-100' value={deliver?.quantity} placeholder='Quantity' type="number" {...register("quantity")} /> <br />
-                <input className='border mb-2 p-2 rounded  w-100 bg-gray-300' type="submit" value='Deliver' />
-            </form>
+        <div className='p-5' >
+            <div className='w-50 mx-auto border p-5 m-5 rounded-lg'>
+                <h2> Your Stock Items: <span className='text-yellow-400'>{deliver.quantity} </span></h2>
+                <p> Supplier id:{supplierId} </p>
+                <form onSubmit={handleStockSubmit} className=''>
+
+                    <input className='border mb-2 p-2 rounded w-100' placeholder='Quantity' name='quantity' ref={quantityRef} type="number" /> <br />
+
+                    <input className='border mb-2 p-2 rounded  w-100 bg-gray-300' type="submit" value='Update Quantity' />
+                </form>
+            </div>
+            <table className=''>
+                <thead>
+                    <tr>
+                        <th>image</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Deliver</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td className='flex justify-center'><img className='w-10 h-10' src={deliver.image} alt="" /></td>
+                        <td>{deliver.price}</td>
+                        <td>{deliver.quantity}</td>
+                        <td><button onClick={handelDeliver} className='bg-yellow-300 py-2 px-3 font-bold rounded'>Deliver</button></td>
+
+                    </tr>
+                </tbody>
+            </table>
         </div>
     );
 }
