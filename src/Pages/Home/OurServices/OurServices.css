@@ -1,9 +1,0 @@
-.service-items {
-    border-bottom: 2px solid white;
-
-}
-
-.service-items:hover {
-    border-bottom-color: #9333EA;
-    transform-origin: left;
-}

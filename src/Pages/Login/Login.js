@@ -8,6 +8,7 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWith
 import auth from '../../Hooks/Firebase.init';
 import Loading from '../../Hooks/Loading/Loading';
 import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
 const Login = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
@@ -20,13 +21,17 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-    const handleLoginForm = event => {
+    const handleLoginForm = async (event) => {
         event.preventDefault()
         const email = event.target.email.value;
         const password = event.target.password.value;
-        // console.log(email, password)
+
         signInWithEmailAndPassword(email, password)
+        const { data } = await axios.post('http://localhost:5000/login', { email })
+        console.log(data)
     }
+
+
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
 
     const [signInWithGithub, gitUser, gitLoading, gitError] = useSignInWithGithub(auth);
@@ -87,8 +92,8 @@ const Login = () => {
                         <div className='w-100 h-[1px] m-2 bg-slate-300'></div>
                     </div>
                     <div className='text-center mt-2'>
-                        <button onClick={() => signInWithGoogle()}><img className='w-8 h-8 mr-2' src={google} alt="Google" /></button>
-                        <button onClick={() => signInWithGithub()}><img className='w-10 h-10' src={github} alt="Github" /></button>
+                        <button className='flex w-5/12 mb-2 justify-center items-center mx-auto bg-white p-2 rounded ' onClick={() => signInWithGoogle()}><img className='w-8 h-8 mr-2' src={google} alt="Google" />Login With Google</button>
+                        <button className='flex w-5/12 mb-2 justify-center items-center mx-auto bg-white p-2 rounded ' onClick={() => signInWithGithub()}><img className='w-8 h-8' src={github} alt="Github" />Login With Github </button>
                     </div>
                     <p className='text-center text-white'>New to Electronic Warehouse <Link to='/register' className='text-yellow-400 font-bold no-underline'>Please Sign-Up</Link></p>
                 </form>
