@@ -15,6 +15,7 @@ import AllSuppliers from './Pages/AllSuppliers/AllSuppliers';
 import UpdateSupplier from './Pages/AllSuppliers/UpdateSupplier/UpdateSupplier';
 import MySuppliers from './Pages/MySuppliers/MySuppliers';
 import DeliverSup from './Pages/DeliverSup/DeliverSup';
+import Blogs from './Pages/Blogs/Blogs';
 function App() {
 
   return (
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
+        <Route path='/blogs' element={<Blogs></Blogs>}></Route>
         <Route path='/update/:id' element={<UpdateSupplier></UpdateSupplier>}></Route>
         <Route path='/deliver/:supplierId' element={<DeliverSup></DeliverSup>}></Route>
         <Route path='/inventory' element={

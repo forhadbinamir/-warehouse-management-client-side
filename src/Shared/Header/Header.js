@@ -15,12 +15,12 @@ const Header = () => {
         <div>
             <Navbar className='bg-purple-600 font-semibold' collapseOnSelect expand="lg" variant="dark">
                 <div className='container'>
-                    <Navbar.Brand href="/"><img className='w-10 rounded-md h-[40px]' src={logo} alt="" /></Navbar.Brand>
+                    <Navbar.Brand as={Link} to="/"><img className='w-10 rounded-md h-[40px]' src={logo} alt="" /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto text-center">
                             <Nav.Link as={Link} to="/inventory">Inventory</Nav.Link>
-                            <Nav.Link href="#Blogs">Blogs</Nav.Link>
+                            <Nav.Link as={Link} to="/blogs">Blogs</Nav.Link>
 
                         </Nav>
                         <Nav className='text-center'>
