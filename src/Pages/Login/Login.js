@@ -29,7 +29,9 @@ const Login = () => {
         signInWithEmailAndPassword(email, password)
         const { data } = await axios.post('http://localhost:5000/login', { email })
         localStorage.setItem('accessToken', data.accessToken)
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
+
+
     }
 
 
@@ -41,6 +43,7 @@ const Login = () => {
         auth
     );
     const from = location.state?.from?.pathname || "/";
+
     if (user || googleUser) {
         navigate(from, { replace: true });
     } else if (gitUser) {
@@ -48,10 +51,12 @@ const Login = () => {
     }
     let errorText;
     if (error || googleError) {
-        errorText = <p className='text-red-400'>Error: {error.message}</p>
+        errorText = <p className=''>Error: User is not Available {error.message}</p>
     } else if (gitError) {
-        errorText = <p className='text-red-400'>Error: {error.message}</p>
+        errorText = <p className=''>Error: {error.message}</p>
     }
+    toast(errorText)
+
     if (loading || googleLoading) {
         return <Loading></Loading>
     } else if (gitLoading) {
@@ -85,7 +90,6 @@ const Login = () => {
                     <label htmlFor="">Password</label>
                     <input className='border rounded p-2 mb-2' ref={passwordRef} required type="password" placeholder='Password' name="password" />
                     <input className='w-100 bg-slate-300 mt-3 p-2 rounded font-bold' type="submit" value="Login" />
-                    {errorText}
                     <p onClick={handleResetPassword} className='text-end cursor-pointer hover:text-yellow-400'>Reset Password</p>
                     <div className='flex justify-center items-center'>
                         <div className='w-100 h-[1px] m-2 bg-slate-300'></div>

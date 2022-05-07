@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import './AllSuplier.css'
 const AllSuppliers = () => {
     const [suppliers, setSuppliers] = useState([])
@@ -22,7 +23,7 @@ const AllSuppliers = () => {
                 .then(del => {
                     console.log('success', del)
                     if (del.deletedCount > 0) {
-                        alert('Successfully delete supplier')
+                        toast('Successfully delete supplier')
                         const remaining = suppliers.filter(sup => sup._id !== id)
                         setSuppliers(remaining)
                     }

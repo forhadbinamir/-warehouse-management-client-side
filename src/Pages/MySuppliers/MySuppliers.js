@@ -3,6 +3,7 @@ import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../Hooks/Firebase.init';
 const MySuppliers = () => {
     const navigate = useNavigate()
@@ -29,7 +30,7 @@ const MySuppliers = () => {
                 setMySuppliers(data)
             }
             catch (error) {
-                console.log(error.message)
+                toast(error.message)
                 if (error.response.status === 401 || error.response.status === 403) {
                     signOut(auth)
                     navigate('/login')

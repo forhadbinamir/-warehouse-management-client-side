@@ -19,9 +19,8 @@ const InventoryItem = ({ item }) => {
                 <h5>Quantity:<span className='text-yellow-400'>{quantity}</span></h5>
                 <p>{description.slice(0, 150)}</p>
                 <h4>Supplier:{supplierName}</h4>
-                <div className='flex justify-between absolute bottom-5 '>
+                <div className='text-center w-100 absolute bottom-5 '>
                     <button onClick={() => handleDeliverSup(item._id)} className='bg-yellow-400 mr-6 py-2 px-3 rounded font-bold '>Delivery</button>
-                    <button className='bg-gray-400 py-2 px-3 rounded font-bold'>Edit</button>
                 </div>
             </div>
         </div>

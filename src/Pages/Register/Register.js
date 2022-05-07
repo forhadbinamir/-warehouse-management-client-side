@@ -47,9 +47,12 @@ const Register = () => {
     let errorText;
     if (error || googleError) {
         errorText = <p className='text-red-400'>Error: {error.message}</p>
-    } else if (gitError) {
+    }
+
+    else if (gitError) {
         errorText = <p className='text-red-400'>Error: {error.message}</p>
     }
+    toast(errorText)
     if (loading || googleLoading) {
         return <Loading></Loading>
     } else if (gitLoading) {
@@ -83,7 +86,7 @@ const Register = () => {
 
 
                     <input disabled={!check} className='w-100 bg-slate-400 p-2 rounded font-bold' type="submit" value="SignUp" />
-                    {errorText}
+
                     <div className='flex justify-center items-center mt-2'>
                         <div className='w-100 h-[1px] m-2 bg-slate-300'></div>
                         <span className='text-white'>Or</span>

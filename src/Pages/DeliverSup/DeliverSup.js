@@ -47,6 +47,23 @@ const DeliverSup = () => {
         //         console.log(response)
         //     })
         console.log(data)
+
+        //remove supplier 
+
+        const url = `http://localhost:5000/suppliers/${supplierId}`
+        fetch(url, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    toast('Your deliver supplier is empty')
+                    const remaining = deliver.filter(sup => sup._id !== supplierId)
+                    setDeliver(remaining)
+                }
+                toast(data)
+            })
+
     };
 
     return (
