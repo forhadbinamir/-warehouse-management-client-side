@@ -2,8 +2,8 @@ import React from 'react';
 import image from '../../../images/experience/exprience.png'
 const Experience = () => {
     return (
-        <div>
-            <div className='flex lg:flex-row md:flex-col sm:flex-col justify-center items-center p-[50px] bg-emerald-500'>
+        <div className='bg-emerald-500'>
+            <div className='container flex lg:flex-row md:flex-col sm:flex-col justify-center items-center p-[50px] '>
                 <div className="left-side">
                     <img className='' src={image} alt="" />
                 </div>

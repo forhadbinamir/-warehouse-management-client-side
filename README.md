@@ -1,8 +1,10 @@
-# Getting Started with Create React App
+# Electronic warehouse Live link
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was develop my react js and nood js with mongodb server and firebase authentication [Live Link](https://warehouse-management-sys-a95b8.firebaseapp.com/).
 
 ## Available Scripts
+
+** 1 added Store manage system **
 
 In the project directory, you can run:
 

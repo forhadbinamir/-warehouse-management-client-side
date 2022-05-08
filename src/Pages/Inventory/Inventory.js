@@ -11,7 +11,7 @@ const Inventory = () => {
     }, [])
     const inventorySlice = inventory.slice(0, 6)
     return (
-        <div className='w-[90%] mx-auto py-10'>
+        <div className='container py-10'>
             <h2 className='text-5xl py-3'>Our Suppliers</h2>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5'>
                 {

@@ -97,8 +97,8 @@ const Login = () => {
                         <div className='w-100 h-[1px] m-2 bg-slate-300'></div>
                     </div>
                     <div className='text-center mt-2'>
-                        <button className='flex w-5/12 mb-2 justify-center items-center mx-auto bg-white p-2 rounded ' onClick={() => signInWithGoogle()}><img className='w-8 h-8 mr-2' src={google} alt="Google" />Login With Google</button>
-                        <button className='flex w-5/12 mb-2 justify-center items-center mx-auto bg-white p-2 rounded ' onClick={() => signInWithGithub()}><img className='w-8 h-8' src={github} alt="Github" />Login With Github </button>
+                        <button className='flex lg:w-5/12 sm:w-full mb-2 justify-center items-center mx-auto bg-white p-2 rounded ' onClick={() => signInWithGoogle()}><img className='w-8 h-8 mr-2' src={google} alt="Google" />Login With Google</button>
+                        <button className='flex lg:w-5/12 sm:w-full mb-2 justify-center items-center mx-auto bg-white p-2 rounded ' onClick={() => signInWithGithub()}><img className='w-8 h-8' src={github} alt="Github" />Login With Github </button>
                     </div>
                     <p className='text-center text-white'>New to Electronic Warehouse <Link to='/register' className='text-yellow-400 font-bold no-underline'>Please Sign-Up</Link></p>
                 </form>
