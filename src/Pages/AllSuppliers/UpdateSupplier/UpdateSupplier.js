@@ -6,7 +6,7 @@ const UpdateSupplier = () => {
     const { id } = useParams()
     const [supplier, setSupplier] = useState([])
     useEffect(() => {
-        const url = `http://localhost:5000/update/${id}`
+        const url = `https://aqueous-crag-40240.herokuapp.com/update/${id}`
         fetch(url)
             .then(res => res.json())
             .then(data => setSupplier(data))
@@ -16,7 +16,7 @@ const UpdateSupplier = () => {
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         // sending data to server using PUT method
-        const url = `http://localhost:5000/update/${id}`
+        const url = `https://aqueous-crag-40240.herokuapp.com/update/${id}`
         fetch(url, {
             method: 'PUT',
             headers: {

@@ -10,7 +10,7 @@ const DeliverSup = () => {
     const [deliver, setDeliver] = useState({})
     const [user] = useAuthState(auth)
     useEffect(() => {
-        const url = `http://localhost:5000/suppliers/${supplierId}`
+        const url = `https://aqueous-crag-40240.herokuapp.com/suppliers/${supplierId}`
         fetch(url)
             .then(res => res.json())
             .then(data => setDeliver(data))
@@ -22,7 +22,7 @@ const DeliverSup = () => {
         const quantity = parseInt(event.target.quantity.value)
         const updateQuantity = previousQuantity + quantity
 
-        const url = `http://localhost:5000/update/${supplierId}`
+        const url = `https://aqueous-crag-40240.herokuapp.com/update/${supplierId}`
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -39,53 +39,57 @@ const DeliverSup = () => {
             })
     }
     const handelDeliver = event => {
-        const previousQuantity = parseInt(deliver.quantity)
-        const updateQuantity = previousQuantity - 1
 
-
-        const url = `http://localhost:5000/update/${supplierId}`
-        fetch(url, {
-            method: 'PUT',
-            headers: {
-                "content-type": 'application/json'
-            },
-            body: JSON.stringify({ quantity: updateQuantity })
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount > 0) {
-                    toast('Your quantity supplier is empty')
-
-                }
-                toast(data)
-            })
-
-        const person = {
-            user: user?.displayName,
-            email: user?.email,
-            service: supplierId,
-            supplierName: deliver?.supplierName,
-            address: user?.address,
-            price: deliver?.price,
-            quantity: deliver.quantity
+        if (!deliver.quantity > 0) {
+            return toast('Your stock is empty')
         }
+        else {
+            const previousQuantity = parseInt(deliver.quantity)
+            const updateQuantity = previousQuantity - 1
 
-        const urlLink = `http://localhost:5000/person`
-        fetch(urlLink, {
-            method: 'POST',
-            headers: {
-                'content-type': "application/json"
-            },
-            body: JSON.stringify(person)
-
-        })
-            .then(res => res.json())
-            .then(response => {
-                const userId = response.insertedId
-                if (userId) {
-                    toast('Your deliver is successfully completed')
-                }
+            const url = `https://aqueous-crag-40240.herokuapp.com/update/${supplierId}`
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    "content-type": 'application/json'
+                },
+                body: JSON.stringify({ quantity: updateQuantity })
             })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+
+                })
+
+            const person = {
+                user: user?.displayName,
+                email: user?.email,
+                service: supplierId,
+                supplierName: deliver?.supplierName,
+                address: user?.address,
+                price: deliver?.price,
+                quantity: deliver.quantity
+            }
+
+            const urlLink = `https://aqueous-crag-40240.herokuapp.com/person`
+            fetch(urlLink, {
+                method: 'POST',
+                headers: {
+                    'content-type': "application/json"
+                },
+                body: JSON.stringify(person)
+
+            })
+                .then(res => res.json())
+                .then(response => {
+                    console.log(response)
+                    const userId = response.insertedId
+                    if (userId) {
+                        toast('Your deliver is successfully completed')
+                    }
+                })
+
+        }
 
     }
     return (

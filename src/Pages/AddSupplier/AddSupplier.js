@@ -5,7 +5,7 @@ const Supplier = (event) => {
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         // sending data to server using POST method
-        fetch('http://localhost:5000/suppliers', {
+        fetch('https://aqueous-crag-40240.herokuapp.com/suppliers', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

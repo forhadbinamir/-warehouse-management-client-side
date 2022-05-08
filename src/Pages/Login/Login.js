@@ -27,7 +27,7 @@ const Login = () => {
         const password = event.target.password.value;
 
         signInWithEmailAndPassword(email, password)
-        const { data } = await axios.post('http://localhost:5000/login', { email })
+        const { data } = await axios.post('https://aqueous-crag-40240.herokuapp.com/login', { email })
         localStorage.setItem('accessToken', data.accessToken)
         // navigate(from, { replace: true });
 

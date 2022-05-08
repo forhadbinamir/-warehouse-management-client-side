@@ -6,7 +6,7 @@ const AllSuppliers = () => {
     const [suppliers, setSuppliers] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/suppliers')
+        fetch('https://aqueous-crag-40240.herokuapp.com/suppliers')
             .then(res => res.json())
             .then(data => setSuppliers(data))
     }, [])
@@ -15,7 +15,7 @@ const AllSuppliers = () => {
         const proceed = window.confirm('Delete Supplier')
         if (proceed) {
             // console.log('delete itams', id)
-            const url = `http://localhost:5000/suppliers/${id}`
+            const url = `https://aqueous-crag-40240.herokuapp.com/suppliers/${id}`
             fetch(url, {
                 method: 'DELETE',
             })

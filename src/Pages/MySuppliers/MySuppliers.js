@@ -11,7 +11,7 @@ const MySuppliers = () => {
     const [mySuppliers, setMySuppliers] = useState([])
     useEffect(() => {
         const email = user.email
-        // const url = `http://localhost:5000/person?email=${email}`
+        // const url = `https://aqueous-crag-40240.herokuapp.com/person?email=${email}`
         // fetch(url, {
         //     headers: {
         //         authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -20,7 +20,7 @@ const MySuppliers = () => {
         //     .then(res => res.json())
         //     .then(data => setMySuppliers(data))
         const getMySuppliers = async () => {
-            const url = `http://localhost:5000/person?email=${email}`
+            const url = `https://aqueous-crag-40240.herokuapp.com/person?email=${email}`
             try {
                 const { data } = await axios.get(url, {
                     headers: {
