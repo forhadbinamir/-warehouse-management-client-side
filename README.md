@@ -4,11 +4,11 @@ This project was develop my react js and node js with mongodb server and firebas
 
 ## Available Scripts
 
-**Store managing system**
-**login register system**
-**jwt access token system**
-**email varification system**
-**using react and nodejs express framwork with mongodb server and server deploy in heroku server and hosting in firebase hosting **
+**1/ Store managing system**
+**2/ login register system**
+**3/ jwt access token system**
+**4/ email varification system**
+**5/ using react and nodejs express framwork with mongodb server and server deploy in heroku server and hosting in firebase hosting **
 
 In the project directory, you can run:
 
