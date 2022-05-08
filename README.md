@@ -1,10 +1,22 @@
 # Electronic warehouse Live link
 
+<<<<<<< HEAD
 This project was develop my react js and nood js with mongodb server and firebase authentication [Live Link](https://warehouse-management-sys-a95b8.firebaseapp.com/).
 
 ## Available Scripts
 
 ** 1 added Store manage system **
+=======
+This project was develop my react js and node js with mongodb server and firebase authentication [Live Link](https://warehouse-management-sys-a95b8.firebaseapp.com/).
+
+## Available Scripts
+
+**1/ Store managing system**
+**2/ login register system**
+**3/ jwt access token system**
+**4/ email varification system**
+**5/ using react and nodejs express framwork with mongodb server and server deploy in heroku server and hosting in firebase hosting **
+>>>>>>> b113142af6ef95525a08fa720127dcc668d21aad
 
 In the project directory, you can run:
 
