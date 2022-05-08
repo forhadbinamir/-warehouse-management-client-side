@@ -1,8 +1,14 @@
-# Getting Started with Create React App
+# Electronic warehouse Live link
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was develop my react js and node js with mongodb server and firebase authentication [Live Link](https://warehouse-management-sys-a95b8.firebaseapp.com/).
 
 ## Available Scripts
+
+**Store managing system**
+**login register system**
+**jwt access token system**
+**email varification system**
+**using react and nodejs express framwork with mongodb server and server deploy in heroku server and hosting in firebase hosting **
 
 In the project directory, you can run:
 
